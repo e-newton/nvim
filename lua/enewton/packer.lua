@@ -50,5 +50,11 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
+  use("lukas-reineke/indent-blankline.nvim")
+  use("tpope/vim-surround")
+  use {
+  'lewis6991/gitsigns.nvim',
+   tag = 'release'
+  }
 end)
 

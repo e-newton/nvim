@@ -1,4 +1,3 @@
-require("enewton.session")
 require("enewton.set")
 require("enewton.mappings")
 require("enewton.packer")
