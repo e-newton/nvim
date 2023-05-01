@@ -25,3 +25,9 @@ end)
 vim.keymap.set("n", "<leader>th", function ()
   vim.cmd.tabprevious()
 end)
+
+vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch)
+
+vim.keymap.set("n", "<leader>bn", vim.cmd.bNext)
+vim.keymap.set("n", "<leader>bv", vim.cmd.bprevious)
+vim.keymap.set("n", "<leader>bx", vim.cmd.bdelete)

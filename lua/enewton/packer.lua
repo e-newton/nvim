@@ -60,5 +60,12 @@ return require('packer').startup(function(use)
   "folke/trouble.nvim",
   requires = "nvim-tree/nvim-web-devicons",
   }
+  use("jose-elias-alvarez/null-ls.nvim")
+  use("terrortylor/nvim-comment")
+  use({
+    "aserowy/tmux.nvim",
+    config = function() return require("tmux").setup() end
+  })
+  use("christoomey/vim-tmux-navigator")
 end)
 
