@@ -67,5 +67,6 @@ return require('packer').startup(function(use)
     config = function() return require("tmux").setup() end
   })
   use("christoomey/vim-tmux-navigator")
+  use("akinsho/bufferline.nvim")
 end)
 

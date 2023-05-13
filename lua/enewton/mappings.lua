@@ -28,6 +28,7 @@ end)
 
 vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch)
 
-vim.keymap.set("n", "<leader>bn", vim.cmd.bNext)
-vim.keymap.set("n", "<leader>bv", vim.cmd.bprevious)
-vim.keymap.set("n", "<leader>bx", vim.cmd.bdelete)
+vim.keymap.set("n", "<C-x>", vim.cmd.bdelete)
+vim.keymap.set("n", "<leader>bD", function ()
+  vim.api.nvim_command('%bd|e#')
+end)
