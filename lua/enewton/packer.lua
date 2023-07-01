@@ -67,6 +67,21 @@ return require('packer').startup(function(use)
     config = function() return require("tmux").setup() end
   })
   use("christoomey/vim-tmux-navigator")
-  use("akinsho/bufferline.nvim")
+  use("preservim/nerdtree")
+  use("tpope/vim-obsession")
+  use({
+    "akinsho/bufferline.nvim",
+    branch = 'main',
+    -- your statusline
+    config = function()
+      require('my_statusline')
+    end,
+    -- some optional icons
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+  })
+  use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
 end)
 

@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 
 -- Move blocks of code around
@@ -28,7 +28,7 @@ end)
 
 vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch)
 
-vim.keymap.set("n", "<C-x>", vim.cmd.bdelete)
+-- vim.keymap.set("n", "<C-x>", vim.cmd.bdelete)
 vim.keymap.set("n", "<leader>bD", function ()
   vim.api.nvim_command('%bd|e#')
 end)
