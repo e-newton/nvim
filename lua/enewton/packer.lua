@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
   })
   use("christoomey/vim-tmux-navigator")
   use("preservim/nerdtree")
+  use("nvim-tree/nvim-tree.lua")
   use("tpope/vim-obsession")
   use({
     "akinsho/bufferline.nvim",
