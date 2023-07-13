@@ -85,6 +85,7 @@ return require('packer').startup(function(use)
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use("xiyaowong/transparent.nvim");
+  use("folke/flash.nvim");
 
 
 
