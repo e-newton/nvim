@@ -32,3 +32,5 @@ vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch)
 vim.keymap.set("n", "<leader>bD", function ()
   vim.api.nvim_command('%bd|e#')
 end)
+
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve-r-cr-o:hor20"

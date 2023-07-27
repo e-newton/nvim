@@ -86,6 +86,8 @@ return require('packer').startup(function(use)
   }
   use("xiyaowong/transparent.nvim");
   use("folke/flash.nvim");
+  use("Wansmer/treesj");
+  use("catppuccin/nvim");
 
 
 
