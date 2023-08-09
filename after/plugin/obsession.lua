@@ -31,7 +31,7 @@ function dump(o)
    end
 end
 
-if not vim.v.argv[2] then
+if not vim.v.argv[3] then
   local currentDirectory = vim.loop.cwd();
   currentDirectory = currentDirectory:gsub("%W", "_")
 
@@ -46,5 +46,5 @@ if not vim.v.argv[2] then
    vim.api.nvim_command('silent source ' .. sessionPath)
   end
   vim.api.nvim_command('silent Obsession ' .. sessionPath)
-  
 end
+  

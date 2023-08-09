@@ -88,6 +88,13 @@ return require('packer').startup(function(use)
   use("folke/flash.nvim");
   use("Wansmer/treesj");
   use("catppuccin/nvim");
+  use("f-person/git-blame.nvim");
+  use {
+    "danymat/neogen",
+    requires = "nvim-treesitter/nvim-treesitter",
+    -- Uncomment next line if you want to follow only stable versions
+    -- tag = "*"
+  }
 
 
 
