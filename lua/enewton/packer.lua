@@ -51,6 +51,7 @@ return require('packer').startup(function(use)
 	  }
   }
   use("lukas-reineke/indent-blankline.nvim")
+  use("tpope/vim-rhubarb")
   use("tpope/vim-surround")
   use {
   'lewis6991/gitsigns.nvim',
@@ -73,10 +74,6 @@ return require('packer').startup(function(use)
   use({
     "akinsho/bufferline.nvim",
     branch = 'main',
-    -- your statusline
-    config = function()
-      require('my_statusline')
-    end,
     -- some optional icons
     requires = { 'nvim-tree/nvim-web-devicons', opt = true },
   })
@@ -95,7 +92,13 @@ return require('packer').startup(function(use)
     -- Uncomment next line if you want to follow only stable versions
     -- tag = "*"
   }
-
+  use({
+    "aaronhallaert/advanced-git-search.nvim",
+})
+use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+  require('git-conflict').setup()
+end}
+use({ 'rose-pine/neovim', as = 'rose-pine' })
 
 
 end)

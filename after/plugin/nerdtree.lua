@@ -1,6 +1,7 @@
 require("nvim-tree").setup({
+
   view = {
-    width = 75
+    adaptive_size = true
   },
   filters = {
     dotfiles = false
