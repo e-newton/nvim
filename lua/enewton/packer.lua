@@ -100,6 +100,8 @@ use {'akinsho/git-conflict.nvim', tag = "*", config = function()
 end}
 use({ 'rose-pine/neovim', as = 'rose-pine' })
 
+use ('nvimdev/lspsaga.nvim')
+
 
 end)
 
