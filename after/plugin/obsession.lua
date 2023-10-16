@@ -16,7 +16,7 @@ local function isdir(path)
    return exists(path.."/")
 end
 
-local SESSION_DIRECTORY_PATH = '/home/enewton/vim-sessions'
+local SESSION_DIRECTORY_PATH = os.getenv('HOME')..'/vim-sessions'
 
 function dump(o)
    if type(o) == 'table' then
