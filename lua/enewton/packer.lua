@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	  'nvim-telescope/telescope.nvim', tag = '0.1.4',
 	  -- or                            , branch = '0.1.x',
 	  requires = {
       {'nvim-lua/plenary.nvim'},
@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
+	  branch = 'v3.x',
 	  requires = {
 		  -- LSP Support
 		  {'neovim/nvim-lspconfig'},
@@ -61,7 +61,13 @@ return require('packer').startup(function(use)
   "folke/trouble.nvim",
   requires = "nvim-tree/nvim-web-devicons",
   }
-  use("jose-elias-alvarez/null-ls.nvim")
+  use({
+  "nvimtools/none-ls.nvim",
+  requires = {
+    "nvim-lua/plenary.nvim",
+    "nvimtools/none-ls-extras.nvim",
+  },
+  })
   use("terrortylor/nvim-comment")
   use({
     "aserowy/tmux.nvim",
@@ -101,6 +107,15 @@ end}
 use({ 'rose-pine/neovim', as = 'rose-pine' })
 
 use ('nvimdev/lspsaga.nvim')
+
+use {
+  'preservim/vim-markdown',
+  config = function ()
+    vim.g.vim_markdown_folding_disabled = 1
+    vim.g.vim_markdown_conceal = 0
+    vim.g.vim_markdown_no_default_key_mappings = 1
+  end
+}
 
 
 end)

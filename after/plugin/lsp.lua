@@ -3,11 +3,12 @@ local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-  'rust_analyzer',
-})
+require("mason").setup()
+require('mason-lspconfig').setup {
+  ensure_installed = { 'rust_analyzer' }
+}
 
-lsp.configure('lua-language-server', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
@@ -18,16 +19,22 @@ lsp.configure('lua-language-server', {
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+
+local cmp_mappings = {
   ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
   ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
-})
+  ['<C-Space>'] = cmp.mapping.complete(),
+}
 
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+cmp.setup({
+  mapping = cmp_mappings,
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+  },
 })
 
 lsp.set_preferences({
