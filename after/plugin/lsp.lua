@@ -1,63 +1,88 @@
-local lsp = require("lsp-zero")
+-- ===============================
+-- LSP / CMP / Diagnostics Config
+-- ===============================
 
+local lsp_zero = require("lsp-zero")
 
-lsp.preset("recommended")
+-- Extend lspconfig to use new Neovim 0.11 API
+lsp_zero.extend_lspconfig()
 
+-- ===============================
+-- Mason Setup
+-- ===============================
 require("mason").setup()
-require('mason-lspconfig').setup {
-  ensure_installed = { 'rust_analyzer' }
-}
+require("mason-lspconfig").setup({
+    ensure_installed = { "rust_analyzer", "lua_ls" },
+    handlers = {
+        lsp_zero.default_setup,  -- automatically sets up installed servers
+    },
+})
 
-lsp.configure('lua_ls', {
+-- ===============================
+-- Custom Lua LS Settings
+-- ===============================
+--
+vim.lsp.config("lua_ls", {
     settings = {
         Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
+            diagnostics = { globals = { "vim" } },
+        },
+    },
 })
+vim.lsp.enable({ "lua_ls" })
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-local cmp_mappings = {
-  ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-  ['<C-Space>'] = cmp.mapping.complete(),
-}
+-- ===============================
+-- CMP Setup
+-- ===============================
+local cmp = require("cmp")
 
 cmp.setup({
-  mapping = cmp_mappings,
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'path' },
-  },
+    mapping = {
+        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
+        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+    },
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "buffer" },
+        { name = "path" },
+    },
 })
 
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = '󰽍',
-        warn = '󰇶',
-        hint = '󰇵',
-        info = '󰱳'
-    }
-})
+-- ===============================
+-- Diagnostic Sign Icons
+-- ===============================
+vim.fn.sign_define("DiagnosticSignError", { text = "󰽍", texthl = "DiagnosticSignError" })
+vim.fn.sign_define("DiagnosticSignWarn",  { text = "󰇶", texthl = "DiagnosticSignWarn" })
+vim.fn.sign_define("DiagnosticSignHint",  { text = "󰇵", texthl = "DiagnosticSignHint" })
+vim.fn.sign_define("DiagnosticSignInfo",  { text = "󰱳", texthl = "DiagnosticSignInfo" })
 
+-- ===============================
+-- Keymaps / on_attach
+-- ===============================
+lsp_zero.on_attach(function(_, bufnr)
+    local opts = { buffer = bufnr }
 
-lsp.on_attach(function(_, bufnr)
-  local opts = {buffer = bufnr, remap = false}
-
-  vim.keymap.set("n", "<C-b>", function() vim.lsp.buf.definition() end, opts)
-  vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-  vim.keymap.set("n", "<leader>dd", function() vim.diagnostic.open_float() end, opts)
-  vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end, opts)
+    vim.keymap.set("n", "<C-b>", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>dd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts)
 end)
 
-lsp.setup()
+-- ===============================
+-- Diagnostics Config
+-- ===============================
 vim.diagnostic.config({
-    virtual_text = true
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = true,
 })
+
+-- ===============================
+-- Finalize LSP Setup
+-- ===============================
+lsp_zero.setup()
+
