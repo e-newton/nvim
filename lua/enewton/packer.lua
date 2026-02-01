@@ -24,6 +24,9 @@ return require('packer').startup(function(use)
     "williamboman/mason.nvim",
     run = ":MasonUpdate" -- :MasonUpdate updates registry contents
   })
+  use { "williamboman/mason.nvim" }
+  use { "williamboman/mason-lspconfig.nvim" }
+  use { "neovim/nvim-lspconfig" }
 
   use("tpope/vim-fugitive")
   use("sainnhe/everforest")
