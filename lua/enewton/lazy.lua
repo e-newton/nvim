@@ -71,7 +71,22 @@ require("lazy").setup({
     { "folke/trouble.nvim", dependencies = { "nvim-tree/nvim-web-devicons" } },
 
     -- Navigation / UI
-    { "aserowy/tmux.nvim", config = function() require("tmux").setup() end },
+    {
+      "aserowy/tmux.nvim",
+      config = function()
+        local tmux = require("tmux")
+        -- Alt-h/l are buffer cycling (bufferline), so resizing lives on Alt-Shift-h/j/k/l.
+        -- <C-h/j/k/l> navigation is left to vim-tmux-navigator.
+        tmux.setup({
+          navigation = { enable_default_keybindings = false },
+          resize = { enable_default_keybindings = false },
+        })
+        vim.keymap.set("n", "<M-H>", tmux.resize_left, { desc = "Resize split left" })
+        vim.keymap.set("n", "<M-J>", tmux.resize_bottom, { desc = "Resize split down" })
+        vim.keymap.set("n", "<M-K>", tmux.resize_top, { desc = "Resize split up" })
+        vim.keymap.set("n", "<M-L>", tmux.resize_right, { desc = "Resize split right" })
+      end,
+    },
     "christoomey/vim-tmux-navigator",
     "preservim/nerdtree",
     "nvim-tree/nvim-tree.lua",
