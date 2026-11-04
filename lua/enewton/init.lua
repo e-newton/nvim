@@ -1,4 +1,4 @@
 require("enewton.set")
 require("enewton.mappings")
-require("enewton.packer")
+require("enewton.lazy")
 vim.cmd.colorscheme('catppuccin')

@@ -2,7 +2,7 @@ require('telescope').setup({
   extensions = {
     advanced_git_search = {
             -- fugitive or diffview
-      diff_plugin = "fugitive",
+      diff_plugin = "diffview",
       -- customize git in previewer
       -- e.g. flags such as { "--no-pager" }, or { "-c", "delta.side-by-side=false" }
       git_flags = {},
@@ -30,6 +30,7 @@ require('telescope').setup({
 })
 local builtin = require('telescope.builtin')
 require("telescope").load_extension("advanced_git_search")
+require("telescope").load_extension("live_grep_args")
 vim.keymap.set('n', '<leader>p', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
 vim.keymap.set('n', '<leader>bb', builtin.buffers, {})
