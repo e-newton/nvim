@@ -12,7 +12,7 @@ lsp_zero.extend_lspconfig()
 -- ===============================
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "rust_analyzer", "lua_ls" },
+    ensure_installed = { "rust_analyzer", "lua_ls", "ts_ls", "clangd", "tailwindcss" },
     handlers = {
         lsp_zero.default_setup,  -- automatically sets up installed servers
     },
